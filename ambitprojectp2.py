@@ -32,7 +32,7 @@ print(bad_words)
 len(bad_words)
 
 #good words
-good_words = ["good", "love", "lovely", "thanks", "Thank you", "thank you so much", "appreciate"]
+good_words = ["good", "love", "lovely", "thanks", "Thank you", "thank you so much", "appreciate", "great"]
 good_words.extend(good_words)
 print(good_words)
 
@@ -70,18 +70,40 @@ filtered_df = df[result]
 
 print(filtered_df)
 
-df2 = pd.read_csv('/content/drive/MyDrive/Tower_Sentiment.csv')
-#Dropping columns that do not need to be read
-df2.drop(df2.columns[[4,5]], axis=1, inplace=True)
-df2.head()
+"""user: sadaa
+bot: adsda
 
-df2['Text'] = df2['Text'].fillna('')
-grouped_df = df2.groupby('ID').agg({'Text': '. '.join, 'Sentiment': 'first'}).reset_index()
-grouped_df.head()
-#len(grouped_df)
+"""
 
-text_paragraph = grouped_df['Text'][0]
-print(text_paragraph)
+# import pandas as pd
+
+# # Read the CSV file and skip the first row
+# df2 = pd.read_csv('/content/drive/MyDrive/Tower_Sentiment.csv', skiprows=0)
+
+# # Drop columns that do not need to be read
+# df2.drop(df2.columns[[4, 5]], axis=1, inplace=True)
+
+# df2.head()
+
+# from google.colab import drive
+# drive.mount('/content/drive')
+
+# df2['Timestamp'] = pd.to_datetime(df2['Timestamp'])
+
+# # Group by 'Conversation ID' and aggregate 'Text' by joining based on 'Source' and preserving timestamp order
+# def concatenate_text(group):
+#     combined_text = ', '.join([f"{source.capitalize()}: {text}" for _, source, text in group[['Timestamp', 'Source', 'Text']].itertuples(index=False)])
+#     return pd.Series({
+#         'Conversation ID': group['Conversation ID'].iloc[0],
+#         'Combined_Text': combined_text
+#     })
+
+# grouped_df = df2.groupby('Conversation ID').apply(concatenate_text).reset_index(drop=True)
+
+# print(grouped_df)
+
+# text_paragraph = grouped_df['Combined_Text'][6]
+# print(text_paragraph)
 
 #Current amount of rows in dataset
 print(len(df))
@@ -211,6 +233,7 @@ print(classification_report(y_test, svm_pred))
 
 new_text = "i think this is great"
 new_text_features = vectorizer.transform([new_text])
+
 #Bayes
 predicted_sentiment = classifier.predict(new_text_features)[0]
 print("Predicted Sentiment Bayes:", predicted_sentiment)
