@@ -59,8 +59,8 @@ import os
 import openai
 
 #do not use without consulting please
-openai.api_key = "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"
-system_message = "You will be provided with text or conversation from a chat bot dataset, and your task is to analyze the sentiment of the users' interactions."
+openai.api_key = ""
+system_message = "You will be provided with text or conversation from a chat bot dataset, and your task is to analyze the sentiment of the users' interactions. Only output the sentiment and a small sentance as to why"
 
 response = openai.ChatCompletion.create(
   model="gpt-3.5-turbo",
@@ -80,5 +80,13 @@ output_content = response['choices'][0]['message']['content']
 print("Text:")
 print(text_paragraph)
 print()
+
 print("Sentiment:",output_content)
 print("Annotated Sentiment: ", sentiment)
+
+"""750 tokens = 0.10
+
+750 = 1000 words
+
+
+"""
